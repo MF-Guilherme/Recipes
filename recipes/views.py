@@ -6,9 +6,6 @@ def home(request):
     return render(request, 'recipes/pages/home.html')
 
 
-def sobre(request):
-    return HttpResponse('Sobre')
-
-
-def contato(request):
-    return HttpResponse('Contato')
+def recipe(request, id):
+    return render(request, 'recipes/pages/recipe-view.html')
+    
