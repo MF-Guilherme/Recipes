@@ -39,15 +39,15 @@
         {% endif %}
     </div>
 
-    {% if not is_detail_page %}
-        <div class="recipe-content">
-            <p>{{ recipe.description }}</p>
-        </div>
+    <div class="preparation-steps">
+        {% if not is_detail_page %}
+            {{ recipe.description }}
+        {% elif recipe.preparation_steps_is_html %}
+            {{ recipe.preparation_steps|safe }}
         {% else %}
-        <div class="recipe-content">
-            <p>{{ recipe.preparation_steps|linebreaksbr }}</p>
-        </div>
-    {% endif %}
+            {{ recipe.preparation_steps|linebreaksbr }}
+        {% endif %}
+    </div>    
 
     <div class="recipe-meta-container">
         <div class="recipe-meta recipe-preparation">
@@ -67,8 +67,9 @@
     <footer class="recipe-footer">
         <a href="{% url "recipes:recipe" recipe.id %}" class="recipe-read-more button button-dark button-full-width">
             <i class="fas fa-eye"></i>
-            <span>ver mais...</span>
-        </a>
-    </footer>
+                <span>ver mais...</span>
+            </a>
+        </footer>
     {% endif %}
+
 </div>
