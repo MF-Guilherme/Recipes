@@ -7,7 +7,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
 
 
 class Recipe(models.Model):
@@ -23,8 +22,8 @@ class Recipe(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
-    cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d/', blank=True, default='')
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, default=None)
+    cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d/', blank=True, default='')  # noqa: E501
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, default=None)  # noqa: E501
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
