@@ -81,7 +81,7 @@ class RecipeViewsTest(RecipeTestBase):
         # Getting the Response HTTP from server
         response = self.client.get(
             reverse(
-                'recipes:category', 
+                'recipes:category',
                 kwargs={'category_id': recipe.category.id})
             )
 
