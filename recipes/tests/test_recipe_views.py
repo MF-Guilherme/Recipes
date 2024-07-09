@@ -37,6 +37,20 @@ class RecipeViewsTest(RecipeTestBase):
         self.assertIn('Recipe Title', content)
         self.assertEqual(len(response_context_recipes), 1)
 
+    def test_recipe_home_template_doesnt_load_recipes_not_published(self):
+        '''Tests if an 'not_published' recipe really doesn't appear on the page''' # noqa
+
+        # Need a recipe for this test
+        self.make_recipe(is_published=False)
+
+        # Getting the Response HTTP from server
+        response = self.client.get(reverse('recipes:home'))
+
+        self.assertIn(
+            'No recipes registered yet',
+            response.content.decode('utf-8'),
+            )
+
     def test_recipe_category_view_function_is_correct(self):
         view = resolve(reverse('recipes:category', kwargs={'category_id': 1}))
         self.assertIs(view.func, views.category)
