@@ -14,7 +14,7 @@ class RecipeCategoryModelTest(RecipeTestBase):
             msg=f'Category string representation must'
                 f'be "{self.category.name}" '
                 f'but "{str(self.category)}" was received')
-    
+
     def test_recipe_category_model_name_max_length_is_65_chars(self):
         self.category.name = 'A' * 66
         with self.assertRaises(ValidationError):
